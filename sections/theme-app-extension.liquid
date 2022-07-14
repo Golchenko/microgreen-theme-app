@@ -1,0 +1,140 @@
+{{ 'theme-app-extension.css' | asset_url | stylesheet_tag }}
+
+<div class="app-extension page-width">
+  <div class="app-extension__image">
+    <img src="{{ 'Envelope.png' | asset_url }}" alt="preview">
+  </div>
+  <div class="app-extension__options">
+    <div class="app-extension__title">
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    <div class="app-extension__form properties">
+      {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+        <p class="properties__message">
+          <label for="message">Message:</label>
+          <textarea
+            id="message"
+            name="properties[Message]"
+            placeholder="Your message"
+          ></textarea>
+        </p>
+        <p class="properties__shipping">
+          <label>Shipping Method:</label><br>
+          <input
+            type="radio"
+            name="properties[Shipping Method]"
+            value="Send via email"
+            checked
+          >
+          <span>Send via email</span><br>
+          <input
+            type="radio"
+            name="properties[Shipping Method]"
+            value="Send as a postcard"
+          >
+          <span>Send as a postcard</span><br>
+        </p>
+        <p class="properties__mail">
+          <input
+            id="mail"
+            type="email"
+            name="properties[Email]"
+            placeholder="Email"
+          >
+        </p>
+        <p class="properties__time">
+          <label>Shipping Time:</label><br>
+          <input
+            type="radio"
+            name="properties[Shipping Time]"
+            value="ASAP"
+            checked
+          >
+          <span>ASAP</span><br>
+          <input
+            type="radio"
+            name="properties[Shipping Time]"
+            value="Pick shipping date"
+          >
+          <span>Pick shipping date</span><br>
+        </p>
+        <input
+          type="hidden"
+          name="id"
+          data-productid="{{product.id}}"
+          class="product-select"
+          value="{{ product.variants[0].id }}"
+          data-variant-title="{{ product.variants[0].title }}"
+        >
+
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+          disabled
+        >
+        <div class="product-form__buttons">
+          <button
+            type="submit"
+            name="add"
+            class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+            {% if product.selected_or_first_available_variant.available == false %}
+              disabled
+            {% endif %}
+          >
+            <span>
+              {%- if product.selected_or_first_available_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </span>
+            <div class="loading-overlay__spinner hidden">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                role="presentation"
+                class="spinner"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </button>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "theme app extension",
+  "settings": [
+    {
+      "label": "Section title",
+      "id": "title",
+      "type": "text",
+      "default": "Send gift"
+    },
+    {
+      "label": "Message limit",
+      "id": "limit",
+      "type": "number",
+      "default": 300
+    },
+    {
+      "label": "Product tag",
+      "id": "tag",
+      "type": "text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "theme app extension",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
