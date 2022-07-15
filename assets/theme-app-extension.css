@@ -140,3 +140,7 @@
     font-size: 1.2rem;
   }
 }
+
+.swal2-title {
+  font-size: 2rem !important;
+}
