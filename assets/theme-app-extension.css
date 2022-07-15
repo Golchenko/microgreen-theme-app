@@ -20,11 +20,6 @@
   width: 50%;
 }
 
-.app-extension__image img {
-  width: 100%;
-  height: auto;
-}
-
 .app-extension__form label {
   font-size: 2.1rem;
 }
@@ -94,32 +89,54 @@
 }
 
 @media screen and (max-width: 960px) {
-    .app-extension__image {
-        width: 40%;
-    }
+  .app-extension__image {
+    width: 40%;
+  }
 
-    .app-extension__options {
-        width: 60%;
-    }
+  .app-extension__image img {
+    width: 100%;
+    height: auto;
+  }
 
-    .app-extension {
-        margin: 0 auto;
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
+  .app-extension__options {
+    width: 60%;
+  }
+
+  .app-extension {
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .app-extension__options {
+    padding-left: 0;
+  }
 }
 
 @media screen and (max-width: 640px) {
-    .app-extension {
-        flex-direction: column-reverse;
-    }
+  .app-extension {
+    flex-direction: column;
+  }
 
-    .app-extension__image {
-        width: 75%;
-        margin: 0 auto;
-    }
+  .app-extension__image {
+    width: 75%;
+    margin: 0 auto;
+  }
 
-    .app-extension__options {
-        width: 100%;
-    }
+  .app-extension__options {
+    width: 100%;
+  }
+
+  .app-extension__form input[type="email"] {
+    width: 90%;
+  }
+
+  .app-extension__form label {
+    font-size: 1.6rem;
+  }
+
+  .app-extension__form p input[type="radio"] + label {
+    padding-right: 10px;
+    font-size: 1.2rem;
+  }
 }

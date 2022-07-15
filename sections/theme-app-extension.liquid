@@ -21,58 +21,48 @@
         </p>
         <p class="properties__shipping">
           <label>Shipping Method:</label><br>
-            <input
+          <input
             id="0"
-              type="radio"
-              name="properties[Shipping Method]"
-              value="Send via email"
-              checked
-            >
-            <label for="0">
-
-            Send via email
-          </label>
-          <label>
-            <input
+            type="radio"
+            name="properties[Shipping Method]"
+            value="Send via email"
+            checked
+          >
+          <label for="0"> Send via email </label>
+          <input
             id="1"
-              type="radio"
-              name="properties[Shipping Method]"
-              value="Send as a postcard"
-            >
-            <label for="1">
-            Send as a postcard
-          </label>
+            type="radio"
+            name="properties[Shipping Method]"
+            value="Send as a postcard"
+          >
+          <label for="1"> Send as a postcard </label>
         </p>
         <p class="properties__mail">
           <input
             id="mail"
             type="email"
             name="properties[Email]"
-            placeholder="Email" 
+            placeholder="Email"
           >
         </p>
         <p class="properties__time">
           <label>Shipping Time:</label><br>
-          
-            <input
+
+          <input
             id="2"
-              type="radio"
-              name="properties[Shipping Time]"
-              value="ASAP"
-              checked
-            >
-            <label for="2">
-            ASAP
-          </label>          
-            <input
+            type="radio"
+            name="properties[Shipping Time]"
+            value="ASAP"
+            checked
+          >
+          <label for="2"> ASAP </label>
+          <input
             id="3"
-              type="radio"
-              name="properties[Shipping Time]"
-              value="Pick shipping date"
-            >
-            <label for="3">
-            Pick shipping date
-          </label>
+            type="radio"
+            name="properties[Shipping Time]"
+            value="Pick shipping date"
+          >
+          <label for="3"> Pick shipping date </label>
         </p>
         <input
           type="hidden"
@@ -100,7 +90,7 @@
           >
             <span>
               {%- if product.selected_or_first_available_variant.available -%}
-                Submit and add to cart 
+                Submit and add to cart
               {%- else -%}
                 {{ 'products.product.sold_out' | t }}
               {%- endif -%}
