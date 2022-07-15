@@ -11,52 +11,68 @@
     <div class="app-extension__form properties">
       {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
         <p class="properties__message">
-          <label for="message">Message:</label>
+          <label for="message">Message:</label><br>
           <textarea
             id="message"
             name="properties[Message]"
             placeholder="Your message"
+            rows="8"
           ></textarea>
         </p>
         <p class="properties__shipping">
           <label>Shipping Method:</label><br>
-          <input
-            type="radio"
-            name="properties[Shipping Method]"
-            value="Send via email"
-            checked
-          >
-          <span>Send via email</span><br>
-          <input
-            type="radio"
-            name="properties[Shipping Method]"
-            value="Send as a postcard"
-          >
-          <span>Send as a postcard</span><br>
+            <input
+            id="0"
+              type="radio"
+              name="properties[Shipping Method]"
+              value="Send via email"
+              checked
+            >
+            <label for="0">
+
+            Send via email
+          </label>
+          <label>
+            <input
+            id="1"
+              type="radio"
+              name="properties[Shipping Method]"
+              value="Send as a postcard"
+            >
+            <label for="1">
+            Send as a postcard
+          </label>
         </p>
         <p class="properties__mail">
           <input
             id="mail"
             type="email"
             name="properties[Email]"
-            placeholder="Email"
+            placeholder="Email" 
           >
         </p>
         <p class="properties__time">
           <label>Shipping Time:</label><br>
-          <input
-            type="radio"
-            name="properties[Shipping Time]"
-            value="ASAP"
-            checked
-          >
-          <span>ASAP</span><br>
-          <input
-            type="radio"
-            name="properties[Shipping Time]"
-            value="Pick shipping date"
-          >
-          <span>Pick shipping date</span><br>
+          
+            <input
+            id="2"
+              type="radio"
+              name="properties[Shipping Time]"
+              value="ASAP"
+              checked
+            >
+            <label for="2">
+            ASAP
+          </label>          
+            <input
+            id="3"
+              type="radio"
+              name="properties[Shipping Time]"
+              value="Pick shipping date"
+            >
+            <label for="3">
+            Pick shipping date
+          </label>
         </p>
         <input
           type="hidden"
@@ -77,14 +93,14 @@
           <button
             type="submit"
             name="add"
-            class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+            class="product-form__submit button {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
             {% if product.selected_or_first_available_variant.available == false %}
               disabled
             {% endif %}
           >
             <span>
               {%- if product.selected_or_first_available_variant.available -%}
-                {{ 'products.product.add_to_cart' | t }}
+                Submit and add to cart 
               {%- else -%}
                 {{ 'products.product.sold_out' | t }}
               {%- endif -%}
