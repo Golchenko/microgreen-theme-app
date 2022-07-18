@@ -17,7 +17,7 @@
             <label for="message">Message:</label><br>
             <textarea
               id="message"
-              name="properties[Message]"
+              name="properties[Gift Message]"
               placeholder="Your message"
               rows="8"
             ></textarea>
@@ -25,27 +25,27 @@
           <p class="properties__shipping">
             <label>Shipping Method:</label><br>
             <input
-              id="0"
+              id="email"
               type="radio"
               name="properties[Shipping Method]"
               value="Send via email"
               checked
             >
-            <label for="0"> Send via email </label>
+            <label for="email"> Send via email </label>
             <input
-              id="1"
+              id="postcard"
               type="radio"
-              name="properties[Shipping Method]"
+              name="properties[Gift Shipping Method]"
               value="Send as a postcard"
             >
-            <label for="1"> Send as a postcard </label>
+            <label for="postcard"> Send as a postcard </label>
           </p>
           <p class="properties__mail">
             <input
               class="properties__email"
-              id="mail"
+              id="emailInput"
               type="email"
-              name="properties[Email]"
+              name="properties[Gift Email]"
               placeholder="Email"
             >
           </p>
@@ -53,21 +53,30 @@
             <label>Shipping Time:</label><br>
 
             <input
-              id="2"
+              id="ASAP"
               type="radio"
-              name="properties[Shipping Time]"
+              name="properties[Gift Shipping Time]"
               value="ASAP"
               checked
             >
-            <label for="2"> ASAP </label>
+            <label for="ASAP"> ASAP </label>
             <input
-              id="3"
+              id="date"
               type="radio"
-              name="properties[Shipping Time]"
+              name="properties[Gift Shipping Time]"
               value="Pick shipping date"
             >
-            <label for="3"> Pick shipping date </label>
+            <label for="date"> Pick shipping date </label>
           </p>
+          <p>
+            <input
+              style="display: none"
+              id="calendar"
+              type="date"
+              name="properties[Gift Shipping Date]"
+            >
+          </p>
+
           <input
             type="hidden"
             name="id"

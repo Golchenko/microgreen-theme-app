@@ -88,6 +88,12 @@
   width: 50%;
 }
 
+.app-extension__form input[type="date"] {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 13px 16px;
+}
+
 @media screen and (max-width: 960px) {
   .app-extension__image {
     width: 40%;

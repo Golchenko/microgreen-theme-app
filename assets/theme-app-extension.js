@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector("textarea"),
     submitButton = document.querySelector(".app-extension__submit"),
-    email = document.querySelector(".properties__email");
+    email = document.querySelector("#emailInput"),
+    radioButtons = document.querySelectorAll('input[type="radio"]'),
+    calendar = document.querySelector("#calendar");
 
   const limit = 10;
   const Toast = Swal.mixin({
@@ -38,11 +40,35 @@ document.addEventListener("DOMContentLoaded", () => {
       : submitButton.removeAttribute("disabled");
   }
 
-  submitButton.addEventListener("click", (event) => {
-    validateEmail(event);
-  });
+  for (const radioButton of radioButtons) {
+    radioButton.addEventListener("click", (event) => {
+      switch (event.target.id) {
+        case "email":
+          email.style.display = "block";
+          submitButton.addEventListener("click", (event) => {
+            validateEmail(event);
+          });
+          break;
+        case "postcard":
+          email.style.display = "none";
+          break;
+        case "ASAP":
+          calendar.style.display = "none";
+          break;
+        case "date":
+          setCurrentDate();
+          calendar.style.display = "block";
+          break;
+      }
+    });
+  }
 
-  function validateEmail(event) {
+  const setCurrentDate = () => {
+    let currentDate = new Date().toJSON().slice(0, 10);
+    calendar.value = currentDate;
+  };
+
+  const validateEmail = (event) => {
     const regx = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (!email.value.match(regx)) {
       event.preventDefault();
@@ -51,5 +77,5 @@ document.addEventListener("DOMContentLoaded", () => {
         title: "Please check your email.",
       });
     }
-  }
+  };
 });
