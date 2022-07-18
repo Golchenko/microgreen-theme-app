@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector("textarea"),
-    submitButton = document.querySelector(".app-extension__submit");
+    submitButton = document.querySelector(".app-extension__submit"),
+    email = document.querySelector(".properties__email");
 
   const limit = 10;
   const Toast = Swal.mixin({
@@ -19,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkMessageLength(e) {
     let messageLength = e.target.value.length;
-    // console.log(messageLength);
 
     if (messageLength > limit) {
       Toast.fire({
@@ -36,5 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
     isDisabled
       ? submitButton.setAttribute("disabled", "disabled")
       : submitButton.removeAttribute("disabled");
+  }
+
+  submitButton.addEventListener("click", (event) => {
+    validateEmail(event);
+  });
+
+  function validateEmail(event) {
+    const regx = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    if (!email.value.match(regx)) {
+      event.preventDefault();
+      Toast.fire({
+        icon: "warning",
+        title: "Please check your email.",
+      });
+    }
   }
 });
