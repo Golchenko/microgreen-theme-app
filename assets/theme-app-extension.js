@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     radioButtons = document.querySelectorAll('input[type="radio"]'),
     calendar = document.querySelector("#calendar");
 
-  const limit = 10;
   const Toast = Swal.mixin({
     toast: true,
     position: "top",

@@ -1,4 +1,8 @@
 {% unless product.selected_or_first_available_variant.available == false %}
+  <script>
+    let limit = `{{section.settings.limit}}`
+  </script>
+
   {{ 'theme-app-extension.css' | asset_url | stylesheet_tag }}
   {{ 'theme-app-extension.js' | asset_url | script_tag }}
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
