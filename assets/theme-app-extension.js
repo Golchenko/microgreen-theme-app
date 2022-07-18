@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const input = document.querySelector("textarea");
+  const input = document.querySelector("textarea"),
+    submitButton = document.querySelector(".app-extension__submit");
+
   const limit = 10;
   const Toast = Swal.mixin({
     toast: true,
@@ -17,11 +19,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkMessageLength(e) {
     let messageLength = e.target.value.length;
+    // console.log(messageLength);
+
     if (messageLength > limit) {
       Toast.fire({
         icon: "warning",
         title: "Please shorten your message.",
       });
-    }
+      disableSubmitButton(true);
+    } else if (!messageLength) {
+      disableSubmitButton(true);
+    } else disableSubmitButton(false);
+  }
+
+  function disableSubmitButton(isDisabled) {
+    isDisabled
+      ? submitButton.setAttribute("disabled", "disabled")
+      : submitButton.removeAttribute("disabled");
   }
 });
