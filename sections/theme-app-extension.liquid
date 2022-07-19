@@ -10,7 +10,12 @@
 
     <div class="app-extension page-width">
       <div class="app-extension__image">
-        <img src="{{ 'Envelope.png' | asset_url }}" alt="preview">
+        <img
+          src="{{ 'Envelope.png' | asset_url }}"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+          alt="preview"
+        >
       </div>
       <div class="app-extension__options">
         <div class="app-extension__title">
@@ -32,7 +37,7 @@
               <input
                 id="email"
                 type="radio"
-                name="properties[Shipping Method]"
+                name="properties[Gift Shipping Method]"
                 value="Send via email"
                 checked
               >
@@ -52,6 +57,7 @@
                 type="email"
                 name="properties[Gift Email]"
                 placeholder="Email"
+                required="required"
               >
             </p>
             <p class="properties__time">

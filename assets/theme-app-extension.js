@@ -30,13 +30,20 @@ document.addEventListener("DOMContentLoaded", () => {
       disableSubmitButton(true);
     } else if (!messageLength) {
       disableSubmitButton(true);
-    } else disableSubmitButton(false);
+    } else {
+      disableSubmitButton(false);
+    }
   }
 
   function disableSubmitButton(isDisabled) {
-    isDisabled
-      ? submitButton.setAttribute("disabled", "disabled")
-      : submitButton.removeAttribute("disabled");
+    if (isDisabled) {
+      submitButton.setAttribute("disabled", "disabled");
+      submitButton.addEventListener("click", (e) => {
+        e.preventDefault();
+      });
+    } else {
+      submitButton.removeAttribute("disabled");
+    }
   }
 
   for (const radioButton of radioButtons) {
@@ -44,37 +51,39 @@ document.addEventListener("DOMContentLoaded", () => {
       switch (event.target.id) {
         case "email":
           email.style.display = "block";
-          submitButton.addEventListener("click", (event) => {
-            validateEmail(event);
-          });
+          email.setAttribute("required", "required");
           break;
         case "postcard":
           email.style.display = "none";
+          email.removeAttribute("required");
           break;
         case "ASAP":
           calendar.style.display = "none";
           break;
         case "date":
-          setCurrentDate();
+          setDate();
           calendar.style.display = "block";
           break;
       }
     });
   }
 
-  const setCurrentDate = () => {
+  const setDate = () => {
     let currentDate = new Date().toJSON().slice(0, 10);
     calendar.value = currentDate;
+    calendar.setAttribute("min", currentDate)
   };
 
-  const validateEmail = (event) => {
+  submitButton.addEventListener("click", (e) => {
+    let isEmailRequired = email.required;
     const regx = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    if (!email.value.match(regx)) {
-      event.preventDefault();
+
+    if (isEmailRequired && !email.value.match(regx)) {
+      e.preventDefault();
       Toast.fire({
         icon: "warning",
         title: "Please check your email.",
       });
     }
-  };
+  });
 });
